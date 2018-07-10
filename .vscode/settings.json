@@ -1,6 +1,3 @@
 {
-    "eslint.packageManager": "yarn",
-    "eslint.options": {
-        "configFile": "eslint.json"
-    }
+    "eslint.packageManager": "yarn"
 }

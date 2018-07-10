@@ -2,7 +2,8 @@
     "env": {
         "es6": true,
         "browser": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
     "parser": "babel-eslint",
     "parserOptions": {
@@ -12,13 +13,15 @@
         "sourceType": "module"
     },
     "plugins": [
+        "jest",
         "react"
     ],
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:jest/recommended",
+        "eslint:recommended"
     ],
     "rules": {
-        "react/no-typos": "error" 
+        "react/no-typos": "error"
     }
 }
