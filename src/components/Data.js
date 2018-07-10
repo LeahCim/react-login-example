@@ -26,9 +26,8 @@ export default class Data extends React.Component {
     render = () =>
         <ul id="data">
             {this.state.data.map(
-                ({ Name }, i) =>
-                    <li key={i}>{Name}</li>
+                ({ Id, Name }) =>
+                    <li key={Id}>{Name}</li>
             )}
         </ul>
-
 }
