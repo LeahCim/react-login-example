@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
 import { FieldGroup } from './FieldGroup';
+import { DATA } from '../Routes';
 
 export default class Login extends Component {
 
     static propTypes = {
-        setCredentials: PropTypes.func.isRequired
+        setCredentials: PropTypes.func.isRequired,
+        history: PropTypes.object.isRequired
     }
 
     state = {
@@ -29,8 +31,10 @@ export default class Login extends Component {
         event.preventDefault();
 
         const { username, password } = this.state;
+        const { setCredentials, history } = this.props;
 
-        this.props.setCredentials(username, password);
+        setCredentials(username, password);
+        history.push(DATA);
     }
 
     render = () =>

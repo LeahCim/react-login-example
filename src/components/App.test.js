@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "jest-localstorage-mock";
+
 import App from './App';
 
 it('renders without crashing', () => {

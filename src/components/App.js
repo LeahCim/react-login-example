@@ -7,43 +7,69 @@ import './App.css';
 import Login from './Login';
 import Data from './Data';
 import { Page } from './Page';
+import LogoutLink from './LogoutLink';
+import { LOGIN, DATA } from '../Routes';
+
+const CREDENTIALS = "credentials";
 
 export default class App extends Component {
 
   state = {
-    credentials: ''
+    credentials: null
+  }
+
+  componentDidMount() {
+    this.setState({
+      credentials: localStorage.getItem(CREDENTIALS) || ''
+    });
   }
 
   setCredentials = (username, password) => {
+    const credentials = encode(`${username}:${password}`);
+
     this.setState({
-      credentials: encode(`${username}:${password}`)
+      credentials
     });
+
+    localStorage.setItem(CREDENTIALS, credentials);
+  }
+
+  resetCredentials = () => {
+    this.setState({
+      credentials: ''
+    });
+
+    localStorage.removeItem(CREDENTIALS);
   }
 
   loginRender = (props) =>
     <div>
       <Login setCredentials={this.setCredentials} {...props} />
-      <Link to="/data">Data</Link>
+      <Link to={DATA}>Data</Link>
     </div>
 
-
   dataRender = (props) => {
-    var { credentials } = this.state;
-
-    if (!credentials.length)
-      return <Redirect to="/login" />;
-
-    return <Data credentials={credentials} {...props} />;
+    return <Data
+      credentials={this.state.credentials}
+      resetCredentials={this.resetCredentials}
+      {...props}
+    />
   }
 
-  render = () =>
-    <Page>
+  render() {
+    return this.state.credentials !== null &&
       <Router>
-        <Switch>
-          <Route path="/login" render={this.loginRender} />
-          <Route path="/data" render={this.dataRender} />
-          <Redirect to="/login" />
-        </Switch>
+        <Page>
+          <LogoutLink
+            credentials={this.state.credentials}
+            resetCredentials={this.resetCredentials}
+          />
+          <Switch>
+            <Route path={LOGIN} render={this.loginRender} />
+            <Route path={DATA} render={this.dataRender} />
+            <Redirect to={LOGIN} />
+          </Switch>
+        </Page>
       </Router>
-    </Page>
+  }
 }
