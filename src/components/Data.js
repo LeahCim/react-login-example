@@ -33,7 +33,7 @@ export default class Data extends Component {
         }
     }
 
-    render = () => {
+    render() {
         const { credentials } = this.props;
         const { data } = this.state;
 

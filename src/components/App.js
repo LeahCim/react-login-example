@@ -48,28 +48,26 @@ export default class App extends Component {
       <Link to={DATA}>Data</Link>
     </div>
 
-  dataRender = (props) => {
-    return <Data
+  dataRender = (props) =>
+    <Data
       credentials={this.state.credentials}
       resetCredentials={this.resetCredentials}
       {...props}
     />
-  }
 
-  render() {
-    return this.state.credentials !== null &&
-      <Router>
-        <Page>
-          <LogoutLink
-            credentials={this.state.credentials}
-            resetCredentials={this.resetCredentials}
-          />
-          <Switch>
-            <Route path={LOGIN} render={this.loginRender} />
-            <Route path={DATA} render={this.dataRender} />
-            <Redirect to={LOGIN} />
-          </Switch>
-        </Page>
-      </Router>
-  }
+  render = () =>
+    this.state.credentials !== null &&
+    <Router>
+      <Page>
+        <LogoutLink
+          credentials={this.state.credentials}
+          resetCredentials={this.resetCredentials}
+        />
+        <Switch>
+          <Route path={LOGIN} render={this.loginRender} />
+          <Route path={DATA} render={this.dataRender} />
+          <Redirect to={LOGIN} />
+        </Switch>
+      </Page>
+    </Router>
 }
