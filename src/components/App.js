@@ -6,11 +6,10 @@ import { encode } from 'base-64';
 import './App.css';
 import Login from './Login';
 import Data from './Data';
-import { Page } from './Page';
+import Page from './Page';
 import LogoutLink from './LogoutLink';
-import { LOGIN, DATA } from '../Routes';
-
-const CREDENTIALS = "credentials";
+import { LOGIN, DATA } from './shared/routes';
+import { CREDENTIALS } from './shared/constants';
 
 export default class App extends Component {
 

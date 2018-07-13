@@ -1,6 +1,7 @@
+import { DATA_URI } from '../config';
+
 export default class Api {
     // static authenticate(username, password) {
-    //     const LOGIN_URI = 'https://example.com/login';
     //     const data = {
     //         username,
     //         password
@@ -18,7 +19,6 @@ export default class Api {
     // }
 
     static async getData(credentials) {
-        const DATA_URI = 'https://example.com/data';
 
         const response = await fetch(
             DATA_URI,

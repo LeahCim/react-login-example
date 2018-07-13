@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { LOGIN } from '../Routes';
+import { LOGIN } from './shared/routes';
 
 export default function LogoutLink({ credentials, resetCredentials }) {
     if (credentials)

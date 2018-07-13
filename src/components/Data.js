@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Api from '../api';
-import { LOGIN } from '../Routes';
+import { LOGIN } from './shared/routes';
 
 export default class Data extends Component {
 

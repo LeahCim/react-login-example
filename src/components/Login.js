@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 
 import { FieldGroup } from './FieldGroup';
-import { DATA } from '../Routes';
+import { LoginButton } from './LoginButton';
+import { DATA } from './shared/routes';
+import { DEFAULT_USERNAME, DEFAULT_PASSWORD } from '../../config';
 
 export default class Login extends Component {
 
@@ -13,8 +14,8 @@ export default class Login extends Component {
     }
 
     state = {
-        username: 'User',
-        password: 'Password'
+        username: DEFAULT_USERNAME,
+        password: DEFAULT_PASSWORD
     }
 
     onUsernameChange = ({ target }) =>
@@ -37,6 +38,9 @@ export default class Login extends Component {
         history.push(DATA);
     }
 
+    isValid = () =>
+        this.state.username.length && this.state.password.length
+
     render = () =>
         <form id="login-form">
             <FieldGroup
@@ -53,8 +57,9 @@ export default class Login extends Component {
                 value={this.state.password}
                 onChange={this.onPasswordChange}
             />
-            <Button type="submit" onClick={this.onSubmit}>
-                Submit
-            </Button>
+            <LoginButton
+                onSubmit={this.onSubmit}
+                isEnabled={this.isValid}
+            />
         </form>
 }
