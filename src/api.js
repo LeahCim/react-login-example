@@ -1,4 +1,4 @@
-import { DATA_URI } from '../config';
+import { DATA_URI } from './config';
 
 export default class Api {
     // static authenticate(username, password) {
