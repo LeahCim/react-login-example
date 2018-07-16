@@ -6,7 +6,7 @@ import { LOGIN } from './shared/routes';
 
 export default function LogoutLink({ credentials, resetCredentials }) {
     if (credentials)
-        return <Link to={LOGIN} onClick={resetCredentials}>Logout</Link>
+        return <Link to={LOGIN} onClick={resetCredentials}>Log out</Link>
 
     return null;
 }
