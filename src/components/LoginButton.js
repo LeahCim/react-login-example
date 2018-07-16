@@ -10,7 +10,7 @@ export const LoginButton = ({ onSubmit, isEnabled }) =>
         onClick={onSubmit}
         disabled={!isEnabled()}
     >
-        Login
+        Log in
     </Button>;
 
 LoginButton.propTypes = {
