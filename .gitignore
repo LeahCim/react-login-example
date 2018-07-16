@@ -22,3 +22,9 @@ yarn-error.log*
 
 # private config
 src/config.js
+
+# Cypress examples
+cypress/fixtures/
+cypress/integration/examples/
+cypress/screenshots/
+cypress/videos/
