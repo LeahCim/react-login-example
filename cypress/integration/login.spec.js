@@ -3,27 +3,25 @@ describe('/login', () => {
         cy.visit('/login');
     });
 
-    it('Shows the "Log in" button', () => {
-        cy.contains('button', 'Log in');
-    });
+    it('Successfully logs in', () => {
+        cy.contains('Log out')
+            .should('not.exist');
 
-    it('Disables the button when username empty', () => {
-        cy.get('#username').clear();
-
-        cy.get('button')
-            .should('have.attr', 'disabled');
-    });
-
-    it('Disables the button when password empty', () => {
-        cy.get('#password').clear();
-
-        cy.get('button')
-            .should('have.attr', 'disabled');
-    });
-
-    it('Shows "Log out" button after logging in', () => {
-        cy.get('button').click();
+        cy.contains('button', 'Log in')
+            .click();
 
         cy.contains('Log out')
+
+        cy.url()
+            .should('include', '/data');
+    });
+
+    ['username', 'password'].map(field => {
+        it(`Disables the button when ${field} empty`, () => {
+            cy.get(`#${field}`).clear();
+
+            cy.get('[type=submit]')
+                .should('be.disabled');
+        });
     });
 });
