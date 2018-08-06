@@ -24,4 +24,10 @@ describe('/login', () => {
                 .should('be.disabled');
         });
     });
+
+    it("Lands back on login page after wrong credentials submitted", () => {
+        cy.get('#username').type("wrong");
+
+        cy.get('[type=submit')
+    });
 });
