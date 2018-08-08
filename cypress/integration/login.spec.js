@@ -30,4 +30,13 @@ describe('/login', () => {
 
         cy.get('[type=submit')
     });
+
+    it("Stays logged in after page refresh", () => {
+        cy.contains('button', 'Log in')
+            .click();
+
+        cy.reload();
+
+        cy.contains('Log out');
+    });
 });
