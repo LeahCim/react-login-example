@@ -13,13 +13,15 @@
         "sourceType": "module"
     },
     "plugins": [
+        "import",
         "jest",
         "react"
     ],
     "extends": [
-        "plugin:react/recommended",
+        "eslint:recommended",
+        "plugin:import/recommended",
         "plugin:jest/recommended",
-        "eslint:recommended"
+        "plugin:react/recommended"
     ],
     "rules": {
         "react/no-typos": "error"
