@@ -3,7 +3,6 @@ import { Route, Redirect, Switch } from 'react-router';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { encode } from 'base-64';
 
-import './App.css';
 import Login from './Login';
 import Data from './Data';
 import Page from './Page';
