@@ -12,7 +12,8 @@ exports[`Shallow renders App 1`] = `
         path="/login"
         render={[Function]}
       />
-      <Route
+      <PrivateRoute
+        credentials=""
         path="/data"
         render={[Function]}
       />

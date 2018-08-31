@@ -12,6 +12,6 @@ export default function LogoutLink({ credentials, resetCredentials }) {
 }
 
 LogoutLink.propTypes = {
-    credentials: PropTypes.string.isRequired,
+    credentials: PropTypes.string,
     resetCredentials: PropTypes.func.isRequired
 }

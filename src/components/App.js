@@ -7,18 +7,19 @@ import Login from './Login';
 import Data from './Data';
 import Page from './Page';
 import LogoutLink from './LogoutLink';
+import PrivateRoute from './PrivateRoute';
 import { LOGIN, DATA } from './shared/routes';
-import { CREDENTIALS } from './shared/constants';
+import { CREDENTIALS, NO_CREDENTIALS, PENDING_CREDENTIALS } from './shared/constants';
 
 export default class App extends Component {
 
   state = {
-    credentials: null
+    credentials: PENDING_CREDENTIALS
   }
 
   componentDidMount() {
     this.setState({
-      credentials: localStorage.getItem(CREDENTIALS) || ''
+      credentials: localStorage.getItem(CREDENTIALS) || NO_CREDENTIALS
     });
   }
 
@@ -34,7 +35,7 @@ export default class App extends Component {
 
   resetCredentials = () => {
     this.setState({
-      credentials: ''
+      credentials: NO_CREDENTIALS
     });
 
     localStorage.removeItem(CREDENTIALS);
@@ -54,7 +55,6 @@ export default class App extends Component {
     />
 
   render = () =>
-    this.state.credentials !== null &&
     <Router>
       <Page>
         <LogoutLink
@@ -63,7 +63,11 @@ export default class App extends Component {
         />
         <Switch>
           <Route path={LOGIN} render={this.loginRender} />
-          <Route path={DATA} render={this.dataRender} />
+          <PrivateRoute
+            credentials={this.state.credentials}
+            path={DATA}
+            render={this.dataRender}
+          />
           <Redirect to={LOGIN} />
         </Switch>
       </Page>
