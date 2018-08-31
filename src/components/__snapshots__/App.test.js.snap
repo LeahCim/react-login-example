@@ -1,27 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Shallow renders App 1`] = `
-<BrowserRouter>
-  <Page>
-    <LogoutLink
-      credentials=""
-      resetCredentials={[Function]}
-    />
-    <Switch>
-      <Route
-        path="/login"
-        render={[Function]}
-      />
-      <PrivateRoute
-        credentials=""
-        path="/data"
-        render={[Function]}
-      />
-      <Redirect
-        push={false}
-        to="/login"
-      />
-    </Switch>
-  </Page>
-</BrowserRouter>
+<App
+  credentials={null}
+  loadCredentials={[Function]}
+  resetCredentials={[Function]}
+  setCredentials={[Function]}
+/>
 `;
