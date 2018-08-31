@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { encode } from 'base-64';
+import PropTypes from 'prop-types';
 
 import Login from './Login';
 import Data from './Data';
@@ -9,67 +9,54 @@ import Page from './Page';
 import LogoutLink from './LogoutLink';
 import PrivateRoute from './PrivateRoute';
 import { LOGIN, DATA } from './shared/routes';
-import { CREDENTIALS, NO_CREDENTIALS, PENDING_CREDENTIALS } from './shared/constants';
 
 export default class App extends Component {
 
-  state = {
-    credentials: PENDING_CREDENTIALS
+  static propTypes = {
+    credentials: PropTypes.string,
+    loadCredentials: PropTypes.func.isRequired,
+    setCredentials: PropTypes.func.isRequired,
+    resetCredentials: PropTypes.func.isRequired
   }
 
   componentDidMount() {
-    this.setState({
-      credentials: localStorage.getItem(CREDENTIALS) || NO_CREDENTIALS
-    });
-  }
-
-  setCredentials = (username, password) => {
-    const credentials = encode(`${username}:${password}`);
-
-    this.setState({
-      credentials
-    });
-
-    localStorage.setItem(CREDENTIALS, credentials);
-  }
-
-  resetCredentials = () => {
-    this.setState({
-      credentials: NO_CREDENTIALS
-    });
-
-    localStorage.removeItem(CREDENTIALS);
+    this.props.loadCredentials();
   }
 
   loginRender = (props) =>
     <div>
-      <Login setCredentials={this.setCredentials} {...props} />
+      <Login setCredentials={this.props.setCredentials} {...props} />
       <Link to={DATA}>Data</Link>
     </div>
 
   dataRender = (props) =>
     <Data
-      credentials={this.state.credentials}
-      resetCredentials={this.resetCredentials}
+      credentials={this.props.credentials}
+      resetCredentials={this.props.resetCredentials}
       {...props}
     />
 
-  render = () =>
-    <Router>
-      <Page>
-        <LogoutLink
-          credentials={this.state.credentials}
-          resetCredentials={this.resetCredentials}
-        />
-        <Switch>
-          <Route path={LOGIN} render={this.loginRender} />
-          <PrivateRoute
-            credentials={this.state.credentials}
-            path={DATA}
-            render={this.dataRender}
+  render() {
+    const { credentials, resetCredentials } = this.props;
+
+    return (
+      <Router>
+        <Page>
+          <LogoutLink
+            credentials={credentials}
+            resetCredentials={resetCredentials}
           />
-          <Redirect to={LOGIN} />
-        </Switch>
-      </Page>
-    </Router>
+          <Switch>
+            <Route path={LOGIN} render={this.loginRender} />
+            <PrivateRoute
+              credentials={credentials}
+              path={DATA}
+              render={this.dataRender}
+            />
+            <Redirect to={LOGIN} />
+          </Switch>
+        </Page>
+      </Router>
+    );
+  }
 }
