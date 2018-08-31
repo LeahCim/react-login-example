@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Login from './Login';
-import Data from './Data';
+import DataContainer from './DataContainer';
 import Page from './Page';
 import LogoutLink from './LogoutLink';
 import PrivateRoute from './PrivateRoute';
@@ -30,7 +30,7 @@ export default class App extends Component {
     </div>
 
   dataRender = (props) =>
-    <Data
+    <DataContainer
       credentials={this.props.credentials}
       resetCredentials={this.props.resetCredentials}
       {...props}
