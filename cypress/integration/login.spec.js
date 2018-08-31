@@ -26,7 +26,10 @@ describe('/login', () => {
     });
 
     it("Lands back on login page after wrong credentials submitted", () => {
-        cy.get('#username').type("wrong");
+        cy.get('#username').type("Wrong{enter}");
+
+        cy.contains('Log out')
+            .should('not.exist');
 
         cy.get('[type=submit')
     });
