@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { LOGIN } from './shared/routes';
 
 export default function LogoutLink({ credentials, resetCredentials }) {
-    if (credentials)
-        return <Link to={LOGIN} onClick={resetCredentials}>Log out</Link>
-
-    return null;
+    return !!credentials &&
+        <Link to={LOGIN} onClick={resetCredentials}>
+            Log out
+         </Link>;
 }
 
 LogoutLink.propTypes = {
