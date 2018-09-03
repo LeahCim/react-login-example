@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { FieldGroup } from './FieldGroup';
-import { LoginButton } from './LoginButton';
 import { DATA } from './shared/routes';
 import { DEFAULT_USERNAME, DEFAULT_PASSWORD } from '../config';
+import LoginForm from './LoginForm';
 
 export default class Login extends Component {
 
@@ -43,28 +42,12 @@ export default class Login extends Component {
         this.state.password.length
 
     render = () =>
-        <form
-            id="login-form"
-            className="was-validated"
+        <LoginForm
             onSubmit={this.onSubmit}
-        >
-            <FieldGroup
-                label="Username"
-                id="username"
-                type="text"
-                autoFocus
-                value={this.state.username}
-                onChange={this.onUsernameChange}
-            />
-            <FieldGroup
-                label="Password"
-                id="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.onPasswordChange}
-            />
-            <LoginButton
-                disabled={!this.isFormValid()}
-            />
-        </form>
+            username={this.state.username}
+            password={this.state.password}
+            onUsernameChange={this.onUsernameChange}
+            onPasswordChange={this.onPasswordChange}
+            isFormValid={this.isFormValid}
+        />
 }

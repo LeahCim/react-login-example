@@ -3,7 +3,7 @@ import { Route, Redirect, Switch } from 'react-router';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Login from './Login';
+import LoginFormContainer from './LoginFormContainer';
 import DataContainer from './DataContainer';
 import Page from './Page';
 import LogoutLink from './LogoutLink';
@@ -25,7 +25,7 @@ export default class App extends Component {
 
   loginRender = (props) =>
     <div>
-      <Login setCredentials={this.props.setCredentials} {...props} />
+      <LoginFormContainer setCredentials={this.props.setCredentials} {...props} />
       <Link to={DATA}>Data</Link>
     </div>
 
