@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 
-export const FieldGroup = ({ id, label, ...rest }) =>
-    <FormGroup controlId={id} bsSize="large">
-        <ControlLabel>{label}</ControlLabel>
-        <FormControl {...rest} />
+export const FieldGroup = ({ label, ...rest }) =>
+    <FormGroup>
+        <Label>{label}</Label>
+        <Input
+            bsSize="lg"
+            required
+            {...rest}
+        />
     </FormGroup>;
 
 FieldGroup.propTypes = {
-    id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired
 };

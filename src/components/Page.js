@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 export default function Page(props) {
     return (
-        <Grid>
+        <Container>
             <Row>
-                <Col mdOffset={4} md={4}>
+                <Col md={{ size: 4, offset: 4 }}>
                     {props.children}
                 </Col>
             </Row>
-        </Grid>
+        </Container>
     );
 }
 
