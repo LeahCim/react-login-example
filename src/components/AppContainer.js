@@ -10,6 +10,10 @@ export default class AppContainer extends Component {
         credentials: PENDING_CREDENTIALS
     }
 
+    componentDidMount() {
+        this.loadCredentials();
+    }
+
     loadCredentials = () => {
         this.setState({
             credentials: localStorage.getItem(CREDENTIALS) || NO_CREDENTIALS
@@ -37,7 +41,6 @@ export default class AppContainer extends Component {
     render = () =>
         <App
             credentials={this.state.credentials}
-            loadCredentials={this.loadCredentials}
             setCredentials={this.setCredentials}
             resetCredentials={this.resetCredentials}
         />

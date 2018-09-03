@@ -14,13 +14,8 @@ export default class App extends Component {
 
   static propTypes = {
     credentials: PropTypes.string,
-    loadCredentials: PropTypes.func.isRequired,
     setCredentials: PropTypes.func.isRequired,
     resetCredentials: PropTypes.func.isRequired
-  }
-
-  componentDidMount() {
-    this.props.loadCredentials();
   }
 
   loginRender = (props) =>
